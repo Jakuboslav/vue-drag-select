@@ -30,10 +30,12 @@ export default {
 
 * Wrap the items that you want to be selectable in the `drag-select-container`
   with a `selectorClass` property and a scoped slot:
+  
+* You can optionally `useDoubleclick` prop, which might be helpful if you need also drag items. It works like doubleclick + mousedown
 
 ```vue
 <template>
-  <drag-select-container selectorClass="itemToBeSelected">
+  <drag-select-container selectorClass="itemToBeSelected" useDoubleclick>
     <template slot-scope="{ selectedItems }">
       <!-- Your items here -->
     </template>
