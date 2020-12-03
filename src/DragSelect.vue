@@ -30,12 +30,17 @@
       color: {
         type: String,
         default: 'rgba(0, 162, 255, .4)'
+      },
+      useDoubleclick: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
       return {
         mouseDown: false,
         concat: false,
+        isDoubleclick: false,
         startPoint: null,
         endPoint: null,
         selectedItems: []
@@ -106,6 +111,18 @@
 
         // Check if shift is down
         this.concat = event.shiftKey
+
+        if (this.useDoubleclick) {
+          // Only double clicks will pass
+          if (!this.isDoubleclick){
+            setTimeout( ()=> {
+              this.isDoubleclick = false
+            },300)
+            this.isDoubleclick = true
+            return
+          }
+        }
+
 
         // Register begin point
         this.mouseDown = true
